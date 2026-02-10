@@ -1,50 +1,76 @@
-# Welcome to your Expo app 👋
+# Navigation App - Expo Router & NativeWind
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-## Get started
+Una aplicación móvil demostrativa construida con **React Native** y **Expo Router**, diseñada para explorar y dominar patrones avanzados de navegación, estilizado dinámico y arquitectura modular.
 
-1. Install dependencies
+Este proyecto implementa una estructura de navegación compleja y anidada (**Drawer + Tabs + Stack**) totalmente tipada con TypeScript y estilizada con **NativeWind**.
 
-   ```bash
-   npm install
-   ```
+## 🚀 Características Principales
 
-2. Start the app
+### 🧭 Navegación Avanzada (Nested Navigation)
+La aplicación maneja una jerarquía de navegación profunda:
+- **Drawer (Menú Lateral):** Contenedor principal personalizado (`CustomDrawer`).
+- **Tabs (Pestañas):** Anidadas dentro del Drawer.
+- **Stack (Pila):** Anidado dentro de las Tabs para manejar el historial de navegación.
+- **Lógica de Retroceso:** Control inteligente del botón "Back" para alternar entre volver atrás en el stack o abrir el menú lateral (`DrawerActions`).
 
-   ```bash
-   npx expo start
-   ```
+### 🎨 UI/UX con NativeWind
+- **Diseño Atomic:** Componentes reutilizables estilizados con clases de utilidad (Tailwind).
+- **Temas Personalizados:** Colores semánticos (`primary`, `secondary`, `tertiary`) y fuentes personalizadas (**WorkSans**).
+- **Layouts Flexibles:** Uso de `SafeAreaView` y múltiples layouts para adaptar la interfaz a diferentes pantallas.
 
-In the output, you'll find options to open the app in a
+### 🔗 Enrutamiento Dinámico
+- **Paso de Argumentos:** Navegación a detalles de productos (`products/[id].tsx`) usando parámetros de ruta (Deep Linking).
+- **File-based Routing:** Aprovechamiento total de la estructura de directorios de Expo Router.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### 🛠 Componentes Personalizados
+- **CustomButton:** Un componente botón versátil creado con `forwardRef` para soportar el prop `asChild` de Expo Router, con variantes de diseño (`text-only`, `contained`) y colores dinámicos.
+- **CustomDrawer:** Un menú lateral personalizado con cabecera de usuario y estilos redondeados.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 📂 Estructura del Proyecto
 
-## Get a fresh project
+La arquitectura sigue el patrón de rutas de Expo Router para lograr la anidación:
 
-When you're ready, run:
-
-```bash
-npm run reset-project
+```text
+app/
+├── (drawer)/                  # Layout del Drawer Principal
+│   ├── (tabs)/                # Layout de Pestañas anidado
+│   │   ├── (stack)/           # Layout de Stack anidado
+│   │   │   ├── home/          # Pantalla principal del Stack
+│   │   │   ├── products/      # Lista y detalle de productos ([id])
+│   │   │   ├── profile/       # Perfil de usuario
+│   │   │   └── settings/      # Configuraciones
+│   │   ├── favorites/         # Tab de favoritos
+│   │   └── home/              # Tab de inicio (acceso alternativo)
+│   ├── schedule/              # Pantalla directa en Drawer
+│   └── user/                  # Pantalla directa en Drawer
+├── _layout.tsx                # Entry point, carga de fuentes y Splash
+└── global.css                 # Configuración de Tailwind/Nativewind
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 💻 Tecnologías
 
-## Learn more
+- Core: React Native, Expo SDK +50, TypeScript.
+- Navegación: Expo Router (Stack, Drawer, Tabs), DrawerActions, useNavigation, router.push vs Link.
+- Estilos: NativeWind (TailwindCSS), Fuentes personalizadas (expo-font).
+- Gestión de Estado (UI): Control de UI mediante Props, paso de parámetros entre pantallas (useLocalSearchParams).
+- Buenas Prácticas:
+   - Uso de Slot y Stack.Screen.
+   - Manejo de SplashScreen.
+   - Creación de componentes agnósticos (CustomButton).
+   - Tipado estricto con interfaces de TypeScript.
 
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 🔧 Instalación y Uso
+1. Clonar el repositorio:
+2. Instalar dependencias:
+```bash
+bun install
+```
+3. Ejecutar la aplicación:
+```bash
+bun start -c
+```
